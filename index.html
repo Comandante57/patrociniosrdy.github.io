@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Futuro Patrocinio Élite</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e; /* Color de fondo principal */
+            background-image: radial-gradient(at 0% 0%, #162447, #1a1a2e);
+        }
+        .flag-icon-container {
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            border-radius: 1.5rem; /* rounded-3xl */
+            padding: 1rem;
+            border: 3px solid transparent;
+            background-color: #2b2c45;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 6rem; /* Ajuste para un tamaño más uniforme */
+            height: 6rem;
+        }
+        .flag-icon-container:hover, .flag-icon-container.selected {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.15);
+            border-color: #e94560; /* Color de acento */
+        }
+        .btn-whatsapp {
+            transition: all 0.3s ease-in-out;
+            background: linear-gradient(to right, #25D366, #128C7E);
+            color: white;
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.6);
+        }
+        .product-card {
+            transition: all 0.3s ease-in-out;
+            background-color: #2b2c45;
+        }
+        .product-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Animación de la caja de productos */
+        .product-card input:checked + .product-info {
+            background-color: #44455f;
+            border-color: #e94560;
+        }
+        .product-info {
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen flex items-center justify-center p-4 md:p-8">
+
+    <!-- Contenedor Principal con estilo mejorado -->
+    <div class="bg-gray-800 bg-opacity-70 backdrop-blur-sm p-8 md:p-12 rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] max-w-5xl w-full border border-gray-700">
+
+        <!-- Sección de Selección de País -->
+        <div id="country-selection" class="text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight animate-pulse">
+                ¡Tu Élite te Espera!
+            </h1>
+            <h2 class="text-xl md:text-3xl font-light text-gray-300 mb-10">
+                Selecciona tu país para iniciar tu inscripción.
+            </h2>
+
+            <!-- Barra de Búsqueda -->
+            <div class="mb-10 w-full flex justify-center">
+                <input type="text" id="country-search" placeholder="Busca tu país aquí..." class="w-full md:w-3/4 p-4 rounded-full bg-gray-700 text-gray-200 placeholder-gray-400 border-2 border-transparent focus:outline-none focus:ring-4 focus:ring-red-400 transition-all">
+            </div>
+
+            <div id="flag-container" class="flex flex-wrap justify-center gap-6 md:gap-10 mb-10">
+                <!-- Iconos de Países Intercalados con Emojis -->
+                <div class="flag-icon-container" onclick="selectCountry('argentina')" data-country-name="argentina">
+                    <span class="text-6xl">🇦🇷</span>
+                </div>
+                <div class="flag-icon-container" onclick="selectCountry('mexico')" data-country-name="mexico">
+                    <span class="text-6xl">🇲🇽</span>
+                </div>
+                <div class="flag-icon-container" onclick="selectCountry('usa')" data-country-name="estados unidos">
+                    <span class="text-6xl">🇺🇸</span>
+                </div>
+                <div class="flag-icon-container" onclick="selectCountry('peru')" data-country-name="peru">
+                    <span class="text-6xl">🇵🇪</span>
+                </div>
+                <div class="flag-icon-container" onclick="selectCountry('chile')" data-country-name="chile">
+                    <span class="text-6xl">🇨🇱</span>
+                </div>
+                <div class="flag-icon-container" onclick="selectCountry('espana')" data-country-name="españa">
+                    <span class="text-6xl">🇪🇸</span>
+                </div>
+                <div class="flag-icon-container" onclick="selectCountry('colombia')" data-country-name="colombia">
+                    <span class="text-6xl">🇨🇴</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Productos (oculta por defecto) -->
+        <div id="product-selection" class="hidden text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
+                ¡Has Logrado la Pre-Selección!
+            </h2>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                Felicidades, te encuentras en una exclusiva lista de solo 20 atletas. Elige y compra tu primer producto para demostrar tu compromiso y dar el siguiente paso hacia el patrocinio.
+            </p>
+
+            <!-- Lista de Productos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Producto 1 -->
+                <label class="product-card rounded-xl p-6 cursor-pointer flex justify-between items-center transform hover:scale-105">
+                    <input type="checkbox" name="product" value="Whey Protein 500g ($450)" class="hidden">
+                    <div class="product-info flex-1 flex flex-col text-left border-2 border-transparent p-4 rounded-xl">
+                        <span class="text-white text-lg font-semibold">Whey Protein 500g</span>
+                        <p class="text-red-400 font-bold text-2xl">$450</p>
+                    </div>
+                </label>
+                <!-- Producto 2 -->
+                <label class="product-card rounded-xl p-6 cursor-pointer flex justify-between items-center transform hover:scale-105">
+                    <input type="checkbox" name="product" value="Whey Protein 2kg ($820)" class="hidden">
+                    <div class="product-info flex-1 flex flex-col text-left border-2 border-transparent p-4 rounded-xl">
+                        <span class="text-white text-lg font-semibold">Whey Protein 2kg</span>
+                        <p class="text-red-400 font-bold text-2xl">$820</p>
+                    </div>
+                </label>
+                <!-- Producto 3 -->
+                <label class="product-card rounded-xl p-6 cursor-pointer flex justify-between items-center transform hover:scale-105">
+                    <input type="checkbox" name="product" value="Creatina 300g ($350)" class="hidden">
+                    <div class="product-info flex-1 flex flex-col text-left border-2 border-transparent p-4 rounded-xl">
+                        <span class="text-white text-lg font-semibold">Creatina 300g</span>
+                        <p class="text-red-400 font-bold text-2xl">$350</p>
+                    </div>
+                </label>
+                <!-- Producto 4 -->
+                <label class="product-card rounded-xl p-6 cursor-pointer flex justify-between items-center transform hover:scale-105">
+                    <input type="checkbox" name="product" value="BCAA 300G ($450)" class="hidden">
+                    <div class="product-info flex-1 flex flex-col text-left border-2 border-transparent p-4 rounded-xl">
+                        <span class="text-white text-lg font-semibold">BCAA 300G</span>
+                        <p class="text-red-400 font-bold text-2xl">$450</p>
+                    </div>
+                </label>
+                <!-- Producto 5 -->
+                <label class="product-card rounded-xl p-6 cursor-pointer flex justify-between items-center transform hover:scale-105">
+                    <input type="checkbox" name="product" value="Prework Out Zen ($450)" class="hidden">
+                    <div class="product-info flex-1 flex flex-col text-left border-2 border-transparent p-4 rounded-xl">
+                        <span class="text-white text-lg font-semibold">Prework Out Zen</span>
+                        <p class="text-red-400 font-bold text-2xl">$450</p>
+                    </div>
+                </label>
+                <!-- Producto 6 -->
+                <label class="product-card rounded-xl p-6 cursor-pointer flex justify-between items-center transform hover:scale-105">
+                    <input type="checkbox" name="product" value="Cafeina anhidra 100 caps ($400)" class="hidden">
+                    <div class="product-info flex-1 flex flex-col text-left border-2 border-transparent p-4 rounded-xl">
+                        <span class="text-white text-lg font-semibold">Cafeina anhidra 100 caps</span>
+                        <p class="text-red-400 font-bold text-2xl">$400</p>
+                    </div>
+                </label>
+                <!-- Producto 7 -->
+                <label class="product-card rounded-xl p-6 cursor-pointer flex justify-between items-center transform hover:scale-105">
+                    <input type="checkbox" name="product" value="Creatina 100 Capsulas ($410)" class="hidden">
+                    <div class="product-info flex-1 flex flex-col text-left border-2 border-transparent p-4 rounded-xl">
+                        <span class="text-white text-lg font-semibold">Creatina 100 Capsulas</span>
+                        <p class="text-red-400 font-bold text-2xl">$410</p>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Mensajes de Patrocinio -->
+            <p class="text-red-400 font-bold text-lg mb-2 animate-pulse">
+                💥 **TU COMPRA ES TU INVERSIÓN EN EL ÉXITO.** Como prueba de tu compromiso, te obsequiamos un segundo producto como patrocinio inicial.
+            </p>
+            <p class="text-gray-400 text-sm italic mb-8 max-w-3xl mx-auto">
+                **IMPORTANTE:** Tu selección te garantiza un lugar en la lista de los 20 finalistas. Al enviar tu solicitud, un agente se pondrá en contacto para una validación final. Esta es tu oportunidad para diferenciarte.
+            </p>
+
+            <button onclick="sendWhatsApp()" class="btn-whatsapp text-white font-extrabold py-4 px-12 rounded-full text-xl shadow-lg uppercase tracking-wide">
+                APLICA AHORA Y ASEGURA TU LUGAR
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Modal de mensaje de denegación -->
+    <div id="denial-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50">
+        <div class="bg-gray-800 p-8 rounded-xl shadow-2xl text-center max-w-sm w-full">
+            <h3 class="text-2xl font-bold text-red-500 mb-4">Lo sentimos...</h3>
+            <p class="text-gray-200 mb-6">El programa de patrocinio de élite no está disponible en este momento para el país que has seleccionado.</p>
+            <button onclick="closeModal()" class="bg-red-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-red-700 transition">
+                Entendido
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Lógica de JavaScript
+        const countrySelection = document.getElementById('country-selection');
+        const productSelection = document.getElementById('product-selection');
+        const denialModal = document.getElementById('denial-modal');
+        const productCheckboxes = document.querySelectorAll('input[name="product"]');
+        
+        const countrySearchInput = document.getElementById('country-search');
+        const flagContainer = document.getElementById('flag-container');
+        const flagIcons = flagContainer.querySelectorAll('.flag-icon-container');
+
+        // Función para filtrar países
+        countrySearchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            flagIcons.forEach(icon => {
+                const countryName = icon.dataset.country-name;
+                if (countryName.includes(searchTerm)) {
+                    icon.classList.remove('hidden');
+                } else {
+                    icon.classList.add('hidden');
+                }
+            });
+        });
+
+        function selectCountry(country) {
+            // Limpia la selección anterior de banderas
+            flagIcons.forEach(btn => btn.classList.remove('selected'));
+            // Marca la bandera seleccionada
+            const selectedBtn = document.querySelector(`[onclick="selectCountry('${country}')"]`);
+            if (selectedBtn) {
+                selectedBtn.classList.add('selected');
+            }
+
+            if (country === 'mexico') {
+                setTimeout(() => {
+                    countrySelection.classList.add('hidden');
+                    productSelection.classList.remove('hidden');
+                }, 500); // Pequeño delay para una transición suave
+            } else {
+                showModal();
+            }
+        }
+
+        function showModal() {
+            denialModal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            denialModal.classList.add('hidden');
+            // Regresar a la selección de país si se cierra el modal
+            countrySelection.classList.remove('hidden');
+            productSelection.classList.add('hidden');
+            // Limpiar selección de bandera y barra de búsqueda
+            flagIcons.forEach(btn => btn.classList.remove('selected'));
+            countrySearchInput.value = '';
+            flagIcons.forEach(icon => icon.classList.remove('hidden')); // Mostrar todos los iconos
+        }
+
+        function sendWhatsApp() {
+            const selectedProducts = Array.from(productCheckboxes)
+                .filter(cb => cb.checked)
+                .map(cb => `  • ${cb.value}`)
+                .join('\n');
+
+            if (selectedProducts.length === 0) {
+                alert('¡Atención! Para continuar, debes seleccionar al menos un producto para tu patrocinio.');
+                return;
+            }
+
+            const message = `¡Hola! Me gustaría continuar mi proceso para el patrocinio de élite en México. He seleccionado los siguientes productos para impulsar mi rendimiento:\n\n${selectedProducts}\n\nEstoy listo para la evaluación. ¡Espero su contacto!`;
+            const encodedMessage = encodeURIComponent(message);
+            const phoneNumber = '5572365913';
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
