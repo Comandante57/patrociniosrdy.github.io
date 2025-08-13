@@ -6,257 +6,301 @@
     <title>Tu Futuro Patrocinio Élite</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #1a1a2e; /* Color de fondo principal */
-            background-image: radial-gradient(at 0% 0%, #162447, #1a1a2e);
+    <script>
+        // Custom Tailwind configuration for the "elite casino" look
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0a0f1f',
+                        'deep-purple': '#1e0a2e',
+                        'vibrant-green': '#00ff7f',
+                        'vibrant-gold': '#ffea00',
+                        'light-gray': '#E2E8F0',
+                        'mid-gray': '#4A5568',
+                        'dark-bg': '#0f0f20', // A darker tone for the general background
+                        'card-bg': 'rgba(30, 10, 46, 0.6)', // Semi-transparent card background
+                        'glow-purple': '#4d1e8c',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Bebas Neue', 'sans-serif'],
+                    },
+                    animation: {
+                        fadeIn: 'fadeIn 1s ease-in-out',
+                        pulseSubtle: 'pulseSubtle 2s ease-in-out infinite',
+                        float: 'float 4s ease-in-out infinite',
+                        neonGlow: 'neonGlow 1.5s ease-in-out infinite alternate',
+                        glow: 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
+                        },
+                        pulseSubtle: {
+                            '0%, 100%': { transform: 'scale(1)', boxShadow: '0 0 5px rgba(0, 255, 127, 0.4)' },
+                            '50%': { transform: 'scale(1.02)', boxShadow: '0 0 15px rgba(0, 255, 127, 0.8)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0) scale(1)' },
+                            '50%': { transform: 'translateY(-15px) scale(1.05)' },
+                        },
+                        neonGlow: {
+                            '0%': { textShadow: '0 0 5px #ffea00, 0 0 10px #ffea00' },
+                            '100%': { textShadow: '0 0 10px #ffea00, 0 0 20px #ffea00' },
+                        },
+                        glow: {
+                            '0%, 100%': { boxShadow: '0 0 5px #4d1e8c, 0 0 10px #4d1e8c' },
+                            '50%': { boxShadow: '0 0 15px #4d1e8c, 0 0 25px #4d1e8c' },
+                        }
+                    }
+                }
+            }
         }
+    </script>
+    <!-- Google Fonts for a bold, casino-like feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles to achieve the futuristic, glowy look */
+        body {
+            background-color: #0A0F1F;
+            background-image: radial-gradient(at 0% 0%, #162447, #1a1a2e);
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 15, 31, 0.9);
+            backdrop-filter: blur(2px);
+            z-index: 1;
+        }
+
+        .container {
+            z-index: 2;
+        }
+
+        .card-container {
+            background: rgba(30, 10, 46, 0.6);
+            border: 2px solid #4d1e8c;
+            box-shadow: 0 0 15px rgba(77, 30, 140, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .card-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(77, 30, 140, 0.8), 0 0 40px rgba(77, 30, 140, 0.3);
+        }
+
+        .glow-text {
+            color: #ffea00;
+            text-shadow: 0 0 5px #ffea00, 0 0 10px #ffea00;
+            animation: neonGlow 1.5s ease-in-out infinite alternate;
+        }
+        
         .flag-icon-container {
-            transition: all 0.3s ease-in-out;
+            padding: 0.75rem; /* Increased padding */
+            border-radius: 0.75rem;
+            background: rgba(30, 10, 46, 0.5); /* Darker purple */
+            border: none;
             cursor: pointer;
-            border-radius: 1.5rem; /* rounded-3xl */
-            padding: 1rem;
-            border: 3px solid transparent;
-            background-color: #2b2c45;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            width: 6rem; /* Ajuste para un tamaño más uniforme */
-            height: 6rem;
+            font-size: 3rem; /* Increased font size */
         }
-        .flag-icon-container:hover, .flag-icon-container.selected {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.15);
-            border-color: #e94560; /* Color de acento */
+
+        .flag-icon-container:hover {
+            background: rgba(30, 10, 46, 0.8);
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 255, 127, 0.4);
         }
-        .btn-whatsapp {
-            transition: all 0.3s ease-in-out;
-            background: linear-gradient(to right, #25D366, #128C7E);
-            color: white;
-        }
-        .btn-whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.6);
-        }
-        .product-card {
-            transition: all 0.3s ease-in-out;
-            background-color: #2b2c45;
-        }
-        .product-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        /* Animación de la caja de productos */
-        .product-card input:checked + .product-info {
-            background-color: #44455f;
-            border-color: #e94560;
-        }
-        .product-info {
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+
+        .flag-icon-container.selected {
+            border: 3px solid #00ff7f; /* Vibrant green border for selected country */
+            box-shadow: 0 0 15px #00ff7f, 0 0 20px #00ff7f; /* Green glow for selected country */
+            transform: scale(1.1);
         }
     </style>
 </head>
-<body class="text-gray-100 min-h-screen flex items-center justify-center p-4 md:p-8">
+<body class="flex flex-col items-center justify-center min-h-screen p-4 md:p-8">
+    <div class="bg-overlay"></div>
 
-    <!-- Contenedor Principal con estilo mejorado -->
-    <div class="bg-gray-800 bg-opacity-70 backdrop-blur-sm p-8 md:p-12 rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] max-w-5xl w-full border border-gray-700">
-
-        <!-- Sección de Selección de País -->
-        <div id="country-selection" class="text-center">
-            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight animate-pulse">
-                ¡Tu Élite te Espera!
+    <div class="container w-full max-w-4xl bg-dark-bg bg-opacity-90 rounded-3xl border border-glow-purple/50 shadow-2xl p-6 sm:p-10 relative animate-fadeIn">
+        <header class="text-center mb-12">
+            <div class="text-7xl text-vibrant-gold mb-4 inline-block">
+                <i class="fas fa-medal animate-pulse"></i>
+            </div>
+            <h1 class="font-display text-4xl sm:text-6xl md:text-7xl font-bold text-vibrant-gold tracking-widest mb-2">
+                TU FUTURO PATROCINIO POWER LABZ
             </h1>
-            <h2 class="text-xl md:text-3xl font-light text-gray-300 mb-10">
-                Selecciona tu país para iniciar tu inscripción.
-            </h2>
+            <p class="text-light-gray text-base sm:text-lg mb-4 glow-text">
+                Un paso más cerca de impulsar tu rendimiento.
+            </p>
+        </header>
 
-            <!-- Barra de Búsqueda -->
-            <div class="mb-10 w-full flex justify-center">
-                <input type="text" id="country-search" placeholder="Busca tu país aquí..." class="w-full md:w-3/4 p-4 rounded-full bg-gray-700 text-gray-200 placeholder-gray-400 border-2 border-transparent focus:outline-none focus:ring-4 focus:ring-red-400 transition-all">
+        <main class="text-center">
+            <!-- Country Selection Section -->
+            <div id="countrySelection" class="animate-fadeIn">
+                <h2 class="text-2xl font-bold text-vibrant-green mb-6">Selecciona tu país para comenzar</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 justify-items-center mb-6">
+                    <button class="flag-icon-container" data-country="Argentina">🇦🇷</button>
+                    <button class="flag-icon-container" data-country="México">🇲🇽</button>
+                    <button class="flag-icon-container" data-country="Estados Unidos">🇺🇸</button>
+                    <button class="flag-icon-container" data-country="Perú">🇵🇪</button>
+                    <button class="flag-icon-container" data-country="Chile">🇨🇱</button>
+                    <button class="flag-icon-container" data-country="España">🇪🇸</button>
+                    <button class="flag-icon-container" data-country="Colombia">🇨🇴</button>
+                </div>
+                <div class="flex items-center justify-center relative w-full max-w-md mx-auto">
+                    <input id="countrySearchInput" type="text" placeholder="Busca tu país..." class="w-full bg-deep-purple/50 text-light-gray rounded-full py-4 pl-12 pr-4 border-2 border-vibrant-green focus:outline-none focus:ring-2 focus:ring-vibrant-green focus:border-transparent transition-all">
+                    <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-light-gray"></i>
+                    <div id="searchResults" class="absolute top-full mt-2 w-full max-h-48 overflow-y-auto bg-deep-purple rounded-xl shadow-lg z-50 hidden"></div>
+                </div>
             </div>
 
-            <div id="flag-container" class="flex flex-wrap justify-center gap-6 md:gap-10 mb-10">
-                <!-- Iconos de Países Intercalados con Emojis -->
-                <div class="flag-icon-container" onclick="selectCountry('argentina')" data-country-name="argentina">
-                    <span class="text-6xl">🇦🇷</span>
+            <!-- Product Selection Section -->
+            <div id="productSelection" class="hidden animate-fadeIn">
+                <div class="mb-12 p-6 rounded-2xl bg-card-bg card-container text-center">
+                    <p class="text-xl font-bold text-light-gray mb-2">Felicidades, te encuentras en una exclusiva lista de solo 20 atletas. Elige y compra tu primer producto para demostrar tu compromiso y dar el siguiente paso hacia el patrocinio.</p>
+                    <p class="text-lg font-bold text-vibrant-gold">TU COMPRA ES TU INVERSIÓN EN EL ÉXITO. Como prueba de tu compromiso, te obsequiamos un segundo producto como patrocinio inicial.</p>
                 </div>
-                <div class="flag-icon-container" onclick="selectCountry('mexico')" data-country-name="mexico">
-                    <span class="text-6xl">🇲🇽</span>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mb-8">
+                    <!-- Product Cards -->
+                    <label class="flex items-center bg-card-bg rounded-2xl p-4 cursor-pointer hover:bg-deep-purple transition-all card-container">
+                        <input type="checkbox" name="product" value="Whey Protein 500g ($450)" class="form-checkbox h-5 w-5 text-vibrant-green border-gray-300 rounded focus:ring-vibrant-green">
+                        <span class="ml-4 text-light-gray text-lg">Whey Protein 500g</span>
+                        <span class="ml-auto font-bold text-vibrant-gold">$450</span>
+                    </label>
+                    <label class="flex items-center bg-card-bg rounded-2xl p-4 cursor-pointer hover:bg-deep-purple transition-all card-container">
+                        <input type="checkbox" name="product" value="Whey Protein 2kg ($820)" class="form-checkbox h-5 w-5 text-vibrant-green border-gray-300 rounded focus:ring-vibrant-green">
+                        <span class="ml-4 text-light-gray text-lg">Whey Protein 2kg</span>
+                        <span class="ml-auto font-bold text-vibrant-gold">$820</span>
+                    </label>
+                    <label class="flex items-center bg-card-bg rounded-2xl p-4 cursor-pointer hover:bg-deep-purple transition-all card-container">
+                        <input type="checkbox" name="product" value="Creatina 300g ($350)" class="form-checkbox h-5 w-5 text-vibrant-green border-gray-300 rounded focus:ring-vibrant-green">
+                        <span class="ml-4 text-light-gray text-lg">Creatina 300g</span>
+                        <span class="ml-auto font-bold text-vibrant-gold">$350</span>
+                    </label>
+                    <label class="flex items-center bg-card-bg rounded-2xl p-4 cursor-pointer hover:bg-deep-purple transition-all card-container">
+                        <input type="checkbox" name="product" value="BCAA 300g ($450)" class="form-checkbox h-5 w-5 text-vibrant-green border-gray-300 rounded focus:ring-vibrant-green">
+                        <span class="ml-4 text-light-gray text-lg">BCAA 300g</span>
+                        <span class="ml-auto font-bold text-vibrant-gold">$450</span>
+                    </label>
+                    <label class="flex items-center bg-card-bg rounded-2xl p-4 cursor-pointer hover:bg-deep-purple transition-all card-container">
+                        <input type="checkbox" name="product" value="Prework Out Zen ($450)" class="form-checkbox h-5 w-5 text-vibrant-green border-gray-300 rounded focus:ring-vibrant-green">
+                        <span class="ml-4 text-light-gray text-lg">Prework Out Zen</span>
+                        <span class="ml-auto font-bold text-vibrant-gold">$450</span>
+                    </label>
+                    <label class="flex items-center bg-card-bg rounded-2xl p-4 cursor-pointer hover:bg-deep-purple transition-all card-container">
+                        <input type="checkbox" name="product" value="Cafeina anhidra 100 caps ($400)" class="form-checkbox h-5 w-5 text-vibrant-green border-gray-300 rounded focus:ring-vibrant-green">
+                        <span class="ml-4 text-light-gray text-lg">Cafeina anhidra 100 caps</span>
+                        <span class="ml-auto font-bold text-vibrant-gold">$400</span>
+                    </label>
+                    <label class="flex items-center bg-card-bg rounded-2xl p-4 cursor-pointer hover:bg-deep-purple transition-all card-container">
+                        <input type="checkbox" name="product" value="Creatina 100 Cápsulas ($410)" class="form-checkbox h-5 w-5 text-vibrant-green border-gray-300 rounded focus:ring-vibrant-green">
+                        <span class="ml-4 text-light-gray text-lg">Creatina 100 Cápsulas</span>
+                        <span class="ml-auto font-bold text-vibrant-gold">$410</span>
+                    </label>
                 </div>
-                <div class="flag-icon-container" onclick="selectCountry('usa')" data-country-name="estados unidos">
-                    <span class="text-6xl">🇺🇸</span>
-                </div>
-                <div class="flag-icon-container" onclick="selectCountry('peru')" data-country-name="peru">
-                    <span class="text-6xl">🇵🇪</span>
-                </div>
-                <div class="flag-icon-container" onclick="selectCountry('chile')" data-country-name="chile">
-                    <span class="text-6xl">🇨🇱</span>
-                </div>
-                <div class="flag-icon-container" onclick="selectCountry('espana')" data-country-name="españa">
-                    <span class="text-6xl">🇪🇸</span>
-                </div>
-                <div class="flag-icon-container" onclick="selectCountry('colombia')" data-country-name="colombia">
-                    <span class="text-6xl">🇨🇴</span>
-                </div>
+                <button onclick="sendWhatsApp()" class="w-full sm:w-auto px-8 py-4 bg-vibrant-green text-dark font-bold rounded-full text-lg shadow-lg hover:bg-vibrant-gold transition-colors transform hover:scale-105">
+                    APLICA AHORA Y ASEGURA TU LUGAR
+                </button>
             </div>
-        </div>
+        </main>
 
-        <!-- Sección de Productos (oculta por defecto) -->
-        <div id="product-selection" class="hidden text-center">
-            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
-                ¡Has Logrado la Pre-Selección!
-            </h2>
-            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Felicidades, te encuentras en una exclusiva lista de solo 20 atletas. Elige y compra tu primer producto para demostrar tu compromiso y dar el siguiente paso hacia el patrocinio.
-            </p>
-
-            <!-- Lista de Productos -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                <!-- Producto 1 -->
-                <label class="product-card rounded-xl p-6 cursor-pointer flex justify-between items-center transform hover:scale-105">
-                    <input type="checkbox" name="product" value="Whey Protein 500g ($450)" class="hidden">
-                    <div class="product-info flex-1 flex flex-col text-left border-2 border-transparent p-4 rounded-xl">
-                        <span class="text-white text-lg font-semibold">Whey Protein 500g</span>
-                        <p class="text-red-400 font-bold text-2xl">$450</p>
-                    </div>
-                </label>
-                <!-- Producto 2 -->
-                <label class="product-card rounded-xl p-6 cursor-pointer flex justify-between items-center transform hover:scale-105">
-                    <input type="checkbox" name="product" value="Whey Protein 2kg ($820)" class="hidden">
-                    <div class="product-info flex-1 flex flex-col text-left border-2 border-transparent p-4 rounded-xl">
-                        <span class="text-white text-lg font-semibold">Whey Protein 2kg</span>
-                        <p class="text-red-400 font-bold text-2xl">$820</p>
-                    </div>
-                </label>
-                <!-- Producto 3 -->
-                <label class="product-card rounded-xl p-6 cursor-pointer flex justify-between items-center transform hover:scale-105">
-                    <input type="checkbox" name="product" value="Creatina 300g ($350)" class="hidden">
-                    <div class="product-info flex-1 flex flex-col text-left border-2 border-transparent p-4 rounded-xl">
-                        <span class="text-white text-lg font-semibold">Creatina 300g</span>
-                        <p class="text-red-400 font-bold text-2xl">$350</p>
-                    </div>
-                </label>
-                <!-- Producto 4 -->
-                <label class="product-card rounded-xl p-6 cursor-pointer flex justify-between items-center transform hover:scale-105">
-                    <input type="checkbox" name="product" value="BCAA 300G ($450)" class="hidden">
-                    <div class="product-info flex-1 flex flex-col text-left border-2 border-transparent p-4 rounded-xl">
-                        <span class="text-white text-lg font-semibold">BCAA 300G</span>
-                        <p class="text-red-400 font-bold text-2xl">$450</p>
-                    </div>
-                </label>
-                <!-- Producto 5 -->
-                <label class="product-card rounded-xl p-6 cursor-pointer flex justify-between items-center transform hover:scale-105">
-                    <input type="checkbox" name="product" value="Prework Out Zen ($450)" class="hidden">
-                    <div class="product-info flex-1 flex flex-col text-left border-2 border-transparent p-4 rounded-xl">
-                        <span class="text-white text-lg font-semibold">Prework Out Zen</span>
-                        <p class="text-red-400 font-bold text-2xl">$450</p>
-                    </div>
-                </label>
-                <!-- Producto 6 -->
-                <label class="product-card rounded-xl p-6 cursor-pointer flex justify-between items-center transform hover:scale-105">
-                    <input type="checkbox" name="product" value="Cafeina anhidra 100 caps ($400)" class="hidden">
-                    <div class="product-info flex-1 flex flex-col text-left border-2 border-transparent p-4 rounded-xl">
-                        <span class="text-white text-lg font-semibold">Cafeina anhidra 100 caps</span>
-                        <p class="text-red-400 font-bold text-2xl">$400</p>
-                    </div>
-                </label>
-                <!-- Producto 7 -->
-                <label class="product-card rounded-xl p-6 cursor-pointer flex justify-between items-center transform hover:scale-105">
-                    <input type="checkbox" name="product" value="Creatina 100 Capsulas ($410)" class="hidden">
-                    <div class="product-info flex-1 flex flex-col text-left border-2 border-transparent p-4 rounded-xl">
-                        <span class="text-white text-lg font-semibold">Creatina 100 Capsulas</span>
-                        <p class="text-red-400 font-bold text-2xl">$410</p>
-                    </div>
-                </label>
-            </div>
-
-            <!-- Mensajes de Patrocinio -->
-            <p class="text-red-400 font-bold text-lg mb-2 animate-pulse">
-                💥 **TU COMPRA ES TU INVERSIÓN EN EL ÉXITO.** Como prueba de tu compromiso, te obsequiamos un segundo producto como patrocinio inicial.
-            </p>
-            <p class="text-gray-400 text-sm italic mb-8 max-w-3xl mx-auto">
-                **IMPORTANTE:** Tu selección te garantiza un lugar en la lista de los 20 finalistas. Al enviar tu solicitud, un agente se pondrá en contacto para una validación final. Esta es tu oportunidad para diferenciarte.
-            </p>
-
-            <button onclick="sendWhatsApp()" class="btn-whatsapp text-white font-extrabold py-4 px-12 rounded-full text-xl shadow-lg uppercase tracking-wide">
-                APLICA AHORA Y ASEGURA TU LUGAR
-            </button>
-        </div>
-
+        <footer class="mt-12 text-light-gray text-sm text-center">
+            <p>Tu Futuro Patrocinio Élite &copy; 2024 | Todos los derechos reservados</p>
+        </footer>
     </div>
 
-    <!-- Modal de mensaje de denegación -->
-    <div id="denial-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50">
-        <div class="bg-gray-800 p-8 rounded-xl shadow-2xl text-center max-w-sm w-full">
-            <h3 class="text-2xl font-bold text-red-500 mb-4">Lo sentimos...</h3>
-            <p class="text-gray-200 mb-6">El programa de patrocinio de élite no está disponible en este momento para el país que has seleccionado.</p>
-            <button onclick="closeModal()" class="bg-red-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-red-700 transition">
+    <!-- Denial Modal -->
+    <div id="denialModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 animate-fadeIn">
+        <div class="bg-dark-bg border border-glow-purple/50 rounded-3xl p-8 max-w-sm w-full text-center relative card-container">
+            <h3 class="text-2xl font-bold text-red-500 mb-4">¡Atención!</h3>
+            <p class="text-lg text-light-gray mb-6">
+                Lo sentimos, por ahora nuestro programa de patrocinio de élite solo está disponible para México.
+            </p>
+            <button onclick="closeModal()" class="w-full px-4 py-3 bg-red-600 text-white font-bold rounded-full text-lg hover:bg-red-700 transition-colors transform hover:scale-105">
                 Entendido
             </button>
         </div>
     </div>
 
     <script>
-        // Lógica de JavaScript
-        const countrySelection = document.getElementById('country-selection');
-        const productSelection = document.getElementById('product-selection');
-        const denialModal = document.getElementById('denial-modal');
+        // Array of all countries for the search bar
+        const allCountries = [
+            { name: "Argentina", code: "ar" },
+            { name: "México", code: "mx" },
+            { name: "Estados Unidos", code: "us" },
+            { name: "Perú", code: "pe" },
+            { name: "Chile", code: "cl" },
+            { name: "España", code: "es" },
+            { name: "Colombia", code: "co" }
+        ];
+
+        // Function to get the flag emoji from a two-letter country code
+        function getFlagEmoji(countryCode) {
+            const codePoints = countryCode
+                .toUpperCase()
+                .split('')
+                .map(char => 127397 + char.charCodeAt());
+            return String.fromCodePoint(...codePoints);
+        }
+
+        // DOM elements
+        const countrySelection = document.getElementById('countrySelection');
+        const productSelection = document.getElementById('productSelection');
+        const flagIcons = document.querySelectorAll('.flag-icon-container');
+        const denialModal = document.getElementById('denialModal');
         const productCheckboxes = document.querySelectorAll('input[name="product"]');
+        const countrySearchInput = document.getElementById('countrySearchInput');
+        const searchResultsContainer = document.getElementById('searchResults');
         
-        const countrySearchInput = document.getElementById('country-search');
-        const flagContainer = document.getElementById('flag-container');
-        const flagIcons = flagContainer.querySelectorAll('.flag-icon-container');
-
-        // Función para filtrar países
-        countrySearchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            flagIcons.forEach(icon => {
-                const countryName = icon.dataset.country-name;
-                if (countryName.includes(searchTerm)) {
-                    icon.classList.remove('hidden');
-                } else {
-                    icon.classList.add('hidden');
-                }
-            });
-        });
-
-        function selectCountry(country) {
-            // Limpia la selección anterior de banderas
+        // This function will select a country and show the next step or a modal
+        function selectCountry(countryName) {
+            // Unselect all flags
             flagIcons.forEach(btn => btn.classList.remove('selected'));
-            // Marca la bandera seleccionada
-            const selectedBtn = document.querySelector(`[onclick="selectCountry('${country}')"]`);
-            if (selectedBtn) {
-                selectedBtn.classList.add('selected');
+            // Select the clicked flag
+            const selectedFlag = document.querySelector(`[data-country="${countryName}"]`);
+            if (selectedFlag) {
+                selectedFlag.classList.add('selected');
             }
-
-            if (country === 'mexico') {
-                setTimeout(() => {
-                    countrySelection.classList.add('hidden');
-                    productSelection.classList.remove('hidden');
-                }, 500); // Pequeño delay para una transición suave
+            
+            // Check if the country is Mexico
+            if (countryName === 'México') {
+                countrySelection.classList.add('hidden');
+                productSelection.classList.remove('hidden');
             } else {
-                showModal();
+                denialModal.classList.remove('hidden');
             }
         }
 
-        function showModal() {
-            denialModal.classList.remove('hidden');
-        }
-
+        // Close the denial modal and go back to country selection
         function closeModal() {
             denialModal.classList.add('hidden');
-            // Regresar a la selección de país si se cierra el modal
             countrySelection.classList.remove('hidden');
             productSelection.classList.add('hidden');
-            // Limpiar selección de bandera y barra de búsqueda
+            // Reset state
             flagIcons.forEach(btn => btn.classList.remove('selected'));
             countrySearchInput.value = '';
-            flagIcons.forEach(icon => icon.classList.remove('hidden')); // Mostrar todos los iconos
+            searchResultsContainer.innerHTML = '';
+            searchResultsContainer.classList.add('hidden');
         }
 
+        // Send a WhatsApp message with the selected products
         function sendWhatsApp() {
             const selectedProducts = Array.from(productCheckboxes)
                 .filter(cb => cb.checked)
@@ -264,7 +308,8 @@
                 .join('\n');
 
             if (selectedProducts.length === 0) {
-                alert('¡Atención! Para continuar, debes seleccionar al menos un producto para tu patrocinio.');
+                // Show a custom message box instead of alert()
+                showCustomAlert('¡Atención!', 'Para continuar, debes seleccionar al menos un producto para tu patrocinio.');
                 return;
             }
 
@@ -275,6 +320,76 @@
 
             window.open(whatsappUrl, '_blank');
         }
+        
+        // Custom alert function
+        function showCustomAlert(title, message) {
+            const customAlert = document.createElement('div');
+            customAlert.className = 'fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 animate-fadeIn';
+            customAlert.innerHTML = `
+                <div class="bg-dark-bg border border-vibrant-green/50 rounded-3xl p-8 max-w-sm w-full text-center relative card-container">
+                    <h3 class="text-2xl font-bold text-vibrant-green mb-4">${title}</h3>
+                    <p class="text-lg text-light-gray mb-6">${message}</p>
+                    <button class="w-full px-4 py-3 bg-vibrant-green text-dark font-bold rounded-full text-lg hover:bg-vibrant-gold transition-colors transform hover:scale-105">
+                        Aceptar
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(customAlert);
+            customAlert.querySelector('button').addEventListener('click', () => {
+                customAlert.remove();
+            });
+        }
+
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Flag icon listeners
+            flagIcons.forEach(icon => {
+                icon.addEventListener('click', () => {
+                    selectCountry(icon.dataset.country);
+                });
+            });
+
+            // Search input listener
+            countrySearchInput.addEventListener('input', () => {
+                const searchTerm = countrySearchInput.value.toLowerCase();
+                if (searchTerm.length > 0) {
+                    const filteredCountries = allCountries.filter(country => 
+                        country.name.toLowerCase().includes(searchTerm)
+                    );
+                    
+                    if (filteredCountries.length > 0) {
+                        searchResultsContainer.classList.remove('hidden');
+                        searchResultsContainer.innerHTML = filteredCountries.map(country => `
+                            <div class="flex items-center px-6 py-3 cursor-pointer hover:bg-deep-purple transition-colors border-b border-gray-700 last:border-b-0"
+                                 data-country="${country.name}" data-code="${country.code}">
+                                <span class="flag-emoji mr-3">${getFlagEmoji(country.code)}</span>
+                                <span class="text-light-gray">${country.name}</span>
+                            </div>
+                        `).join('');
+                        
+                        searchResultsContainer.querySelectorAll('div').forEach(item => {
+                            item.addEventListener('click', () => {
+                                selectCountry(item.dataset.country);
+                                countrySearchInput.value = item.dataset.country;
+                                searchResultsContainer.classList.add('hidden');
+                            });
+                        });
+                    } else {
+                        searchResultsContainer.innerHTML = `<div class="p-4 text-center text-light-gray">No se encontraron resultados.</div>`;
+                    }
+                } else {
+                    searchResultsContainer.classList.add('hidden');
+                }
+            });
+
+            // Hide search results and modals when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!countrySearchInput.contains(e.target) && !searchResultsContainer.contains(e.target)) {
+                    searchResultsContainer.classList.add('hidden');
+                }
+            });
+        });
     </script>
 </body>
 </html>
