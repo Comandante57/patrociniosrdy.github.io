@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Labz - Patrocinio Élite</title>
+    <title>Power Labz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Estilos base y tipografía */
@@ -37,7 +37,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
         
         .logo {
@@ -73,7 +72,7 @@
         }
         
         h1 {
-            font-size: 2.5rem;
+            font-size: 5.0rem;
             background: linear-gradient(to right, #ffffff, #ff6b6b);
             -webkit-background-clip: text;
             background-clip: text;
@@ -383,33 +382,7 @@
             box-shadow: 0 0 0 3px rgba(255, 56, 56, 0.1);
         }
         
-        /* Sección de productos */
-        .products-section {
-            text-align: center;
-            margin: 60px 0;
-        }
-        
-        .products-btn {
-            background: linear-gradient(to right, #ff3838, #ff6b6b);
-            color: white;
-            border: none;
-            padding: 16px 35px;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
-            margin-top: 20px;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-        }
-        
-        .products-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 56, 56, 0.25);
-            background: linear-gradient(to right, #ff4d4d, #ff7f7f);
-        }
+        /* Sección de productos (eliminada) */
         
         /* Estadísticas */
         .stat-number {
@@ -434,83 +407,6 @@
         
         .stat-item {
             text-align: center;
-        }
-        
-        /* Productos */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-        
-        .product-card {
-            background: rgba(30, 20, 20, 0.6);
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(255, 56, 56, 0.2);
-            border-color: rgba(255, 56, 56, 0.2);
-        }
-        
-        .product-image {
-            width: 100%;
-            height: 180px;
-            background: rgba(40, 30, 30, 0.8);
-            border-radius: 10px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #ff3838;
-        }
-        
-        .product-title {
-            font-size: 1.2rem;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
-        
-        .product-price {
-            font-size: 1.3rem;
-            color: #ff3838;
-            font-weight: 700;
-            margin: 10px 0;
-        }
-        
-        .product-description {
-            color: #a0a0a0;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            flex-grow: 1;
-        }
-        
-        .add-to-cart {
-            background: linear-gradient(to right, #ff3838, #ff6b6b);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: auto;
-        }
-        
-        .add-to-cart:hover {
-            background: linear-gradient(to right, #ff4d4d, #ff7f7f);
-            transform: translateY(-2px);
         }
         
         /* Mejoras de adaptabilidad para móviles */
@@ -584,7 +480,7 @@
             }
             
             h1 {
-                font-size: 1.8rem;
+                font-size: 3.0rem;
             }
             
             h2 {
@@ -617,13 +513,13 @@
     
     <header>
         <div class="container">
-            <div class="logo">Power Labz Élite</div>
+            <div class="logo">Power Labz</div>
         </div>
     </header>
     
     <section class="hero">
         <div class="container">
-            <h1>Únete a nuestro programa de patrocinio para atletas</h1>
+            <h1>¿Estas listo?</h1>
             <p class="subtitle">Regístrate ahora y accede a productos de suplementación de alta calidad diseñados para maximizar tu rendimiento deportivo.</p>
             
             <div class="country-selector">
@@ -640,7 +536,7 @@
                 </select>
             </div>
             
-            <button class="btn" onclick="scrollToRegistration()">Registrarme ahora</button>
+            <button class="btn" id="registerBtn" onclick="registerRedirect()">Registrarme ahora</button>
         </div>
     </section>
     
@@ -676,103 +572,9 @@
                     <p class="benefit-desc">Maximiza tu energía y enfoque durante los entrenamientos con nuestra fórmula avanzada.</p>
                 </div>
             </div>
-            
-            <div class="products-section">
-                <button class="products-btn" onclick="showProducts()">Ver todos los productos</button>
-            </div>
         </div>
     </section>
-    
-    <section id="productsSection" style="display: none;">
-        <div class="container">
-            <div class="section-title">
-                <h2>Catálogo de Suplementos</h2>
-                <p class="subtitle">Selecciona los productos para tu patrocinio</p>
-            </div>
-            
-            <div class="product-grid">
-                <div class="product-card fade-in">
-                    <div class="product-image">
-                        <i class="fas fa-weight"></i>
-                    </div>
-                    <h3 class="product-title">Whey Protein 500g</h3>
-                    <p class="product-description">Proteína de suero de leche de alta calidad para la recuperación muscular.</p>
-                    <div class="product-price">$450</div>
-                    <button class="add-to-cart" onclick="addToCart('Whey Protein 500g', 450)">Seleccionar</button>
-                </div>
-                
-                <div class="product-card fade-in delay-1">
-                    <div class="product-image">
-                        <i class="fas fa-weight"></i>
-                    </div>
-                    <h3 class="product-title">Whey Protein 2kg</h3>
-                    <p class="product-description">Proteína de suero de leche en presentación económica de 2kg.</p>
-                    <div class="product-price">$820</div>
-                    <button class="add-to-cart" onclick="addToCart('Whey Protein 2kg', 820)">Seleccionar</button>
-                </div>
-                
-                <div class="product-card fade-in delay-1">
-                    <div class="product-image">
-                        <i class="fas fa-dumbbell"></i>
-                    </div>
-                    <h3 class="product-title">Creatina 300g</h3>
-                    <p class="product-description">Creatina monohidratada de pureza superior para aumentar fuerza.</p>
-                    <div class="product-price">$350</div>
-                    <button class="add-to-cart" onclick="addToCart('Creatina 300g', 350)">Seleccionar</button>
-                </div>
-                
-                <div class="product-card fade-in delay-2">
-                    <div class="product-image">
-                        <i class="fas fa-capsules"></i>
-                    </div>
-                    <h3 class="product-title">BCAA 300g</h3>
-                    <p class="product-description">Aminoácidos de cadena ramificada para recuperación muscular.</p>
-                    <div class="product-price">$450</div>
-                    <button class="add-to-cart" onclick="addToCart('BCAA 300g', 450)">Seleccionar</button>
-                </div>
-                
-                <div class="product-card fade-in delay-2">
-                    <div class="product-image">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="product-title">Prework Out Zen</h3>
-                    <p class="product-description">Pre-entreno para maximizar energía y enfoque durante entrenamientos.</p>
-                    <div class="product-price">$450</div>
-                    <button class="add-to-cart" onclick="addToCart('Prework Out Zen', 450)">Seleccionar</button>
-                </div>
-                
-                <div class="product-card fade-in delay-3">
-                    <div class="product-image">
-                        <i class="fas fa-coffee"></i>
-                    </div>
-                    <h3 class="product-title">Cafeína Anhidra 100 caps</h3>
-                    <p class="product-description">Cafeína pura para aumentar el rendimiento y la concentración.</p>
-                    <div class="product-price">$400</div>
-                    <button class="add-to-cart" onclick="addToCart('Cafeína Anhidra 100 caps', 400)">Seleccionar</button>
-                </div>
-                
-                <div class="product-card fade-in delay-3">
-                    <div class="product-image">
-                        <i class="fas fa-pills"></i>
-                    </div>
-                    <h3 class="product-title">Creatina 100 Cápsulas</h3>
-                    <p class="product-description">Creatina en cápsulas para fácil consumo y dosificación precisa.</p>
-                    <div class="product-price">$410</div>
-                    <button class="add-to-cart" onclick="addToCart('Creatina 100 Cápsulas', 410)">Seleccionar</button>
-                </div>
-            </div>
-            
-            <div id="cartSection" style="display: none; margin-top: 40px;">
-                <div class="registration-section">
-                    <h3>Productos Seleccionados</h3>
-                    <div id="cartItems"></div>
-                    <div id="cartTotal" style="font-size: 1.2rem; font-weight: bold; margin: 20px 0; color: #ff3838;"></div>
-                    <button class="btn" onclick="sendWhatsApp()">Enviar solicitud de patrocinio</button>
-                </div>
-            </div>
-        </div>
-    </section>
-    
+
     <section>
         <div class="container">
             <div class="section-title">
@@ -827,74 +629,6 @@
         </div>
     </section>
     
-    <section id="registration-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Formulario de registro</h2>
-                <p class="subtitle">Completa tus datos para unirte a nuestro programa de patrocinio</p>
-            </div>
-            
-            <div class="registration-section">
-                <form id="registrationForm">
-                    <div class="form-group">
-                        <label for="fullName">Nombre completo</label>
-                        <input type="text" id="fullName" required placeholder="Ingresa tu nombre completo">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Correo electrónico</label>
-                        <input type="email" id="email" required placeholder="tu@email.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Número de teléfono</label>
-                        <input type="tel" id="phone" required placeholder="+52 123 456 7890">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="country">País</label>
-                        <select id="country" required>
-                            <option value="">Selecciona tu país</option>
-                            <option value="MX">México</option>
-                            <option value="AR">Argentina</option>
-                            <option value="CL">Chile</option>
-                            <option value="CO">Colombia</option>
-                            <option value="ES">España</option>
-                            <option value="US">Estados Unidos</option>
-                            <option value="PE">Perú</option>
-                            <option value="other">Otro país</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="sport">Deporte principal</label>
-                        <select id="sport" required>
-                            <option value="">Selecciona tu deporte</option>
-                            <option value="fitness">Fitness/Culturismo</option>
-                            <option value="crossfit">CrossFit</option>
-                            <option value="running">Running</option>
-                            <option value="ciclimso">Ciclismo</option>
-                            <option value="natacion">Natación</option>
-                            <option value="otros">Otros</option>
-                        </select>
-                    </div>
-                    
-                    <button type="button" class="btn" onclick="submitForm()">Completar registro</button>
-                </form>
-            </div>
-        </div>
-    </section>
-    
-    <div class="modal" id="confirmationModal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal()">&times;</button>
-            <h2>¡Registro exitoso!</h2>
-            <p>Te has registrado correctamente en nuestro programa de patrocinio para atletas.</p>
-            <p>En breve recibirás un correo electrónico con las instrucciones para acceder a tus beneficios exclusivos y descuentos en productos.</p>
-            <button class="btn" onclick="closeModal()" style="margin-top: 20px;">Entendido</button>
-        </div>
-    </div>
-    
     <div class="modal" id="denialModal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeDenialModal()">&times;</button>
@@ -906,32 +640,19 @@
     
     <footer>
         <div class="container">
-            <div class="logo">Power Labz Élite</div>
+            <div class="logo">Power Labz</div>
             <div class="footer-links">
                 <a href="#">Términos de servicio</a>
                 <a href="#">Política de privacidad</a>
                 <a href="#">FAQ</a>
                 <a href="#">Soporte</a>
             </div>
-            <p class="copyright">© 2025 Power Labz Élite. Suplementación deportiva de alta calidad. Consulte con un profesional de la salud antes de usar cualquier suplemento.</p>
+            <p class="copyright">© 2025 Power Labz. Suplementación deportiva de alta calidad. Consulte con un profesional de la salud antes de usar cualquier suplemento.</p>
         </div>
     </footer>
     
     <script>
-        // Variables globales
-        let cart = [];
-        
         // Funcionalidad del modal
-        function openModal() {
-            document.getElementById('confirmationModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeModal() {
-            document.getElementById('confirmationModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        
         function openDenialModal() {
             document.getElementById('denialModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
@@ -944,158 +665,42 @@
         
         // Cerrar modal al hacer clic fuera del contenido
         window.onclick = function(event) {
-            const modal = document.getElementById('confirmationModal');
             const denialModal = document.getElementById('denialModal');
-            
-            if (event.target == modal) {
-                closeModal();
-            }
             
             if (event.target == denialModal) {
                 closeDenialModal();
             }
         }
         
-        // Función para hacer scroll a la sección de registro
-        function scrollToRegistration() {
-            document.getElementById('registration-section').scrollIntoView({ 
-                behavior: 'smooth' 
-            });
-        }
-        
         // Función para verificar el país seleccionado
         function checkCountry() {
             const countrySelect = document.getElementById('countrySelect');
             const selectedCountry = countrySelect.value;
+            const registerBtn = document.getElementById('registerBtn');
             
             if (selectedCountry === 'MX') {
-                // Redirigir a WhatsApp para México
-                window.location.href = 'https://wa.link/wfwhov';
+                registerBtn.textContent = 'Registrarme ahora';
+                registerBtn.disabled = false;
+                registerBtn.style.opacity = '1';
+                registerBtn.style.cursor = 'pointer';
+            } else {
+                registerBtn.textContent = 'Registrarme ahora';
+                registerBtn.disabled = true;
+                registerBtn.style.opacity = '0.5';
+                registerBtn.style.cursor = 'not-allowed';
+            }
+        }
+        
+        // Función para redirigir según el país
+        function registerRedirect() {
+            const countrySelect = document.getElementById('countrySelect');
+            const selectedCountry = countrySelect.value;
+            
+            if (selectedCountry === 'MX') {
+                window.open('https://comandante57.github.io/formreclutamientopowerlabz/', '_blank');
             } else if (selectedCountry) {
-                // Otro país - mostrar modal de denegación
                 openDenialModal();
             }
-        }
-        
-        // Función para enviar el formulario
-        function submitForm() {
-            const fullName = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const country = document.getElementById('country').value;
-            const sport = document.getElementById('sport').value;
-            
-            if (fullName && email && phone && country && sport) {
-                if (country === 'MX') {
-                    openModal();
-                    document.getElementById('registrationForm').reset();
-                } else {
-                    openDenialModal();
-                }
-            } else {
-                alert('Por favor, completa todos los campos del formulario.');
-            }
-        }
-        
-        // Mostrar productos
-        function showProducts() {
-            document.getElementById('productsSection').style.display = 'block';
-            document.getElementById('productsSection').scrollIntoView({ 
-                behavior: 'smooth' 
-            });
-        }
-        
-        // Añadir producto al carrito
-        function addToCart(productName, productPrice) {
-            cart.push({ name: productName, price: productPrice });
-            updateCart();
-            
-            // Mostrar sección del carrito si hay productos
-            if (cart.length > 0) {
-                document.getElementById('cartSection').style.display = 'block';
-            }
-        }
-        
-        // Actualizar carrito
-        function updateCart() {
-            const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
-            
-            // Limpiar carrito
-            cartItems.innerHTML = '';
-            
-            // Calcular total
-            let total = 0;
-            
-            // Añadir items al carrito
-            cart.forEach((item, index) => {
-                const itemElement = document.createElement('div');
-                itemElement.classList.add('cart-item');
-                itemElement.style.display = 'flex';
-                itemElement.style.justifyContent = 'space-between';
-                itemElement.style.marginBottom = '10px';
-                itemElement.style.padding = '10px';
-                itemElement.style.background = 'rgba(40, 30, 30, 0.6)';
-                itemElement.style.borderRadius = '8px';
-                
-                itemElement.innerHTML = `
-                    <span>${item.name}</span>
-                    <span>$${item.price}</span>
-                    <button onclick="removeFromCart(${index})" style="background: #ff3838; color: white; border: none; border-radius: 4px; padding: 5px 10px; cursor: pointer;">Eliminar</button>
-                `;
-                
-                cartItems.appendChild(itemElement);
-                total += item.price;
-            });
-            
-            // Actualizar total
-            cartTotal.textContent = `Total: $${total}`;
-        }
-        
-        // Eliminar producto del carrito
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCart();
-            
-            // Ocultar sección del carrito si no hay productos
-            if (cart.length === 0) {
-                document.getElementById('cartSection').style.display = 'none';
-            }
-        }
-        
-        // Enviar por WhatsApp
-        function sendWhatsApp() {
-            if (cart.length === 0) {
-                alert('Por favor, selecciona al menos un producto para tu patrocinio.');
-                return;
-            }
-            
-            const fullName = document.getElementById('fullName').value || 'No proporcionado';
-            const email = document.getElementById('email').value || 'No proporcionado';
-            const phone = document.getElementById('phone').value || 'No proporcionado';
-            const country = document.getElementById('country').value || 'No proporcionado';
-            const sport = document.getElementById('sport').value || 'No proporcionado';
-            
-            let message = `¡Hola! Me gustaría solicitar mi patrocinio con Power Labz.\n\n`;
-            message += `*Datos personales:*\n`;
-            message += `Nombre: ${fullName}\n`;
-            message += `Email: ${email}\n`;
-            message += `Teléfono: ${phone}\n`;
-            message += `País: ${country}\n`;
-            message += `Deporte: ${sport}\n\n`;
-            message += `*Productos seleccionados:*\n`;
-            
-            cart.forEach(item => {
-                message += `• ${item.name} - $${item.price}\n`;
-            });
-            
-            message += `\n*Total: $${cart.reduce((total, item) => total + item.price, 0)}*\n\n`;
-            message += `Espero su respuesta para continuar con el proceso. ¡Gracias!`;
-            
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/525572365913?text=${encodedMessage}`;
-            
-            window.open(whatsappUrl, '_blank');
         }
         
         // Efecto de aparición al hacer scroll
@@ -1114,19 +719,8 @@
                 observer.observe(element);
             });
             
-            // Sincronizar selección de país entre el selector principal y el del formulario
-            const countrySelectMain = document.getElementById('countrySelect');
-            const countrySelectForm = document.getElementById('country');
-            
-            countrySelectMain.addEventListener('change', function() {
-                countrySelectForm.value = this.value;
-                checkCountry();
-            });
-            
-            countrySelectForm.addEventListener('change', function() {
-                countrySelectMain.value = this.value;
-                checkCountry();
-            });
+            // Deshabilitar el botón al cargar la página si no hay país seleccionado
+            checkCountry();
         });
     </script>
 </body>
