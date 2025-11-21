@@ -3,725 +3,483 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Labz</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>POWER LABZ | DARK MODE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Teko (Titulos Altos) y Inter (Texto limpio) -->
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;600;700&family=Inter:wght@300;400;800&display=swap" rel="stylesheet">
+    <!-- Iconos Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['"Teko"', 'sans-serif'],
+                        'body': ['"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        'neon-red': '#FF1F1F',
+                        'dark-bg': '#0a0a0a',
+                        'card-bg': '#141414',
+                        'steel': '#2a2a2a',
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #222 1px, transparent 1px), linear-gradient(to bottom, #222 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* Estilos base y tipografía */
-        @import url('https://fonts.cdnfonts.com/css/helvetica-neue-9');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Helvetica Neue', sans-serif;
-        }
-        
         body {
-            background-color: #0a0a0a;
-            color: #e0e0e0;
-            line-height: 1.6;
+            background-color: #050505;
+            color: #ffffff;
+        }
+        
+        /* Efecto de Grid sutil en el fondo */
+        .bg-grid {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+
+        /* Botón con efecto Glitch/Hover agresivo */
+        .cyber-btn {
             position: relative;
-            overflow-x: hidden;
-            font-weight: 400;
-        }
-        
-        /* Contenedores y secciones */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            padding: 30px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(to right, #ff3838, #ff6b6b);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-align: center;
-            letter-spacing: 1px;
-        }
-        
-        .hero {
-            padding: 80px 0 60px;
-            text-align: center;
-            position: relative;
-        }
-        
-        section {
-            padding: 60px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        /* Tipografía y colores */
-        h1, h2, h3 {
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        
-        h1 {
-            font-size: 5.0rem;
-            background: linear-gradient(to right, #ffffff, #ff6b6b);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            letter-spacing: -0.5px;
-        }
-        
-        h2 {
-            font-size: 1.8rem;
-            color: #ff3838;
-            letter-spacing: -0.5px;
-        }
-        
-        h3 {
-            font-size: 1.3rem;
-            color: #ffffff;
-        }
-        
-        p {
-            margin-bottom: 20px;
-            color: #a0a0a0;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-        
-        .highlight {
-            color: #ff3838;
-            font-weight: 500;
-        }
-        
-        .subtitle {
-            font-size: 1.1rem;
-            color: #b0b0b0;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        /* Tarjetas de beneficios */
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-        
-        .benefit-card {
-            background: rgba(30, 20, 20, 0.6);
-            border-radius: 16px;
-            padding: 30px 25px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-        }
-        
-        .benefit-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(255, 56, 56, 0.2);
-            border-color: rgba(255, 56, 56, 0.2);
-        }
-        
-        .benefit-icon {
-            font-size: 2rem;
-            color: #ff3838;
-            margin-bottom: 20px;
-            background: rgba(255, 56, 56, 0.1);
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-        }
-        
-        .benefit-title {
-            font-size: 1.2rem;
-            color: #ffffff;
-            margin-bottom: 15px;
-        }
-        
-        .benefit-desc {
-            color: #a0a0a0;
-            font-size: 0.95rem;
-        }
-        
-        /* Sección de registro */
-        .registration-section {
-            background: rgba(30, 20, 20, 0.6);
-            border-radius: 20px;
-            padding: 40px 30px;
-            margin: 50px auto;
-            max-width: 900px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-            text-align: left;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #e0e0e0;
-            font-weight: 500;
-        }
-        
-        .form-group input, .form-group select {
-            background: rgba(40, 30, 30, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #ffffff;
-            padding: 14px 20px;
-            border-radius: 10px;
-            width: 100%;
-            font-size: 1rem;
-            backdrop-filter: blur(10px);
+            overflow: hidden;
             transition: all 0.3s ease;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
         }
         
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: rgba(255, 56, 56, 0.5);
-            box-shadow: 0 0 0 3px rgba(255, 56, 56, 0.1);
-        }
-        
-        /* Botones de acción */
-        .btn {
-            background: linear-gradient(to right, #ff3838, #ff6b6b);
-            color: white;
-            border: none;
-            padding: 16px 35px;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
-            margin-top: 20px;
-            letter-spacing: 0.5px;
-            width: 100%;
-            max-width: 300px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 56, 56, 0.25);
-            background: linear-gradient(to right, #ff4d4d, #ff7f7f);
-        }
-        
-        /* Modal de confirmación */
-        .modal {
-            display: none;
-            position: fixed;
+        .cyber-btn::before {
+            content: '';
+            position: absolute;
             top: 0;
-            left: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-            padding: 20px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
         }
         
-        .modal-content {
-            background: rgba(30, 20, 20, 0.95);
-            padding: 40px 30px;
-            border-radius: 20px;
-            max-width: 560px;
-            width: 100%;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            position: relative;
-            backdrop-filter: blur(15px);
+        .cyber-btn:hover::before {
+            left: 100%;
         }
         
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            color: #a0a0a0;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            background: none;
-            border: none;
+        .cyber-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            filter: grayscale(100%);
+        }
+
+        /* Tarjetas con bordes cortados */
+        .cut-card {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+        }
+
+        /* Texto outline */
+        .outline-text {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+            color: transparent;
         }
         
-        .close-btn:hover {
-            color: #ff3838;
+        /* Animación de pulso suave para elementos destacados */
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px #FF1F1F33; }
+            50% { box-shadow: 0 0 20px #FF1F1F66; }
+            100% { box-shadow: 0 0 5px #FF1F1F33; }
         }
         
-        /* Footer */
-        footer {
-            padding: 40px 0 20px;
-            text-align: center;
-            margin-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        .glow-effect:hover {
+            animation: glow 1.5s infinite;
         }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 25px 0;
-        }
-        
-        .footer-links a {
-            color: #a0a0a0;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: #ff3838;
-        }
-        
-        .copyright {
-            color: #808080;
-            font-size: 0.85rem;
-            margin-top: 25px;
-        }
-        
-        /* Animaciones */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 0.8s ease forwards;
-        }
-        
-        .delay-1 {
-            animation-delay: 0.2s;
-        }
-        
-        .delay-2 {
-            animation-delay: 0.4s;
-        }
-        
-        .delay-3 {
-            animation-delay: 0.6s;
-        }
-        
-        /* Efectos especiales */
-        .gradient-bg {
-            position: fixed;
-            top: -200px;
-            right: -200px;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 56, 56, 0.15) 0%, transparent 70%);
-            z-index: -1;
-        }
-        
-        .gradient-bg-2 {
-            position: absolute;
-            bottom: -200px;
-            left: -200px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 56, 56, 0.1) 0%, transparent 70%);
-            z-index: -1;
-        }
-        
-        /* Selector de país */
-        .country-selector {
-            margin: 30px 0;
-            text-align: center;
-        }
-        
-        .country-selector select {
-            background: rgba(40, 30, 30, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #ffffff;
-            padding: 14px 20px;
-            border-radius: 10px;
-            font-size: 1rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 300px;
-            text-align: center;
-            margin: 0 auto;
-            display: block;
-        }
-        
-        .country-selector select:focus {
-            outline: none;
-            border-color: rgba(255, 56, 56, 0.5);
-            box-shadow: 0 0 0 3px rgba(255, 56, 56, 0.1);
-        }
-        
-        /* Sección de productos (eliminada) */
-        
-        /* Estadísticas */
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #ff3838;
-            margin-bottom: 10px;
-        }
-        
-        .stat-label {
-            color: #a0a0a0;
-            font-size: 1rem;
-        }
-        
-        .stats-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 60px 0;
-            flex-wrap: wrap;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        /* Mejoras de adaptabilidad para móviles */
-        @media (max-width: 768px) {
-            header {
-                padding: 20px 0;
-            }
-            
-            .logo {
-                font-size: 1.8rem;
-            }
-            
-            .hero {
-                padding: 60px 0 40px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.6rem;
-            }
-            
-            h3 {
-                font-size: 1.2rem;
-            }
-            
-            .subtitle {
-                font-size: 1rem;
-            }
-            
-            section {
-                padding: 40px 0;
-            }
-            
-            .registration-section {
-                padding: 30px 20px;
-                margin: 30px auto;
-            }
-            
-            .benefits-grid, .product-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .benefit-card, .product-card {
-                padding: 25px 20px;
-            }
-            
-            .modal-content {
-                padding: 30px 20px;
-            }
-            
-            .stats-container {
-                gap: 30px;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            .logo {
-                font-size: 1.6rem;
-            }
-            
-            h1 {
-                font-size: 3.0rem;
-            }
-            
-            h2 {
-                font-size: 1.4rem;
-            }
-            
-            .btn, .add-to-cart {
-                padding: 14px 25px;
-                font-size: 1rem;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .stats-container {
-                gap: 20px;
-            }
-            
-            .stat-number {
-                font-size: 1.8rem;
-            }
+
+        /* Estilos personalizados para el select */
+        select option {
+            background-color: #141414;
+            color: white;
         }
     </style>
 </head>
-<body>
-    <div class="gradient-bg"></div>
-    <div class="gradient-bg-2"></div>
-    
-    <header>
-        <div class="container">
-            <div class="logo">Power Labz</div>
+<body class="font-body antialiased selection:bg-neon-red selection:text-white overflow-x-hidden relative">
+
+    <!-- Background Grid Overlay -->
+    <div class="fixed inset-0 bg-grid-pattern bg-grid opacity-20 pointer-events-none z-0"></div>
+
+    <!-- Navbar -->
+    <nav class="w-full bg-dark-bg/90 backdrop-blur-md border-b border-steel sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+            <div class="flex items-center gap-2">
+                <div class="w-3 h-8 bg-neon-red skew-x-[-20deg]"></div>
+                <span class="text-3xl font-display font-bold tracking-wider text-white">POWER <span class="text-neon-red">LABZ</span></span>
+            </div>
+            <div class="hidden md:flex gap-8 font-display text-xl uppercase tracking-wide text-gray-400">
+                <a href="#hero" class="hover:text-white transition-colors">Inicio</a>
+                <a href="#productos" class="hover:text-white transition-colors">Arsenal</a>
+                <a href="#beneficios" class="hover:text-white transition-colors">Membresía</a>
+            </div>
+            <button onclick="document.getElementById('hero').scrollIntoView({behavior: 'smooth'})" class="hidden md:inline-block border border-neon-red text-neon-red px-6 py-1 font-display text-lg uppercase hover:bg-neon-red hover:text-black transition-all">
+                Unirse
+            </button>
+             <button class="md:hidden text-white">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20 pb-32 overflow-hidden">
+        
+        <!-- Elementos de fondo abstractos -->
+        <div class="absolute top-1/4 left-0 w-64 h-64 bg-neon-red rounded-full blur-[150px] opacity-20 animate-pulse"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-900 rounded-full blur-[150px] opacity-10"></div>
+
+        <div class="relative z-10 max-w-5xl w-full">
+            <span class="inline-block py-1 px-3 border border-gray-700 rounded-full bg-card-bg/50 text-neon-red text-xs md:text-sm font-bold uppercase tracking-[0.2em] mb-6 backdrop-blur-sm">
+                Patrocinio Abierto 2025
+            </span>
+
+            <h1 class="font-display text-[8rem] md:text-[9rem] lg:text-[12rem] leading-[0.8] font-bold uppercase mb-4">
+                ¿Estás <br>
+                <span class="text-neon-red">Listo?</span>
+            </h1>
+
+            <p class="text-gray-400 text-lg md:text-2xl font-light tracking-widest uppercase mb-8 max-w-2xl mx-auto border-l-4 border-neon-red pl-6 text-left md:text-center md:border-l-0 md:border-b-2 md:pb-4">
+                La evolución de tu cuerpo comienza aquí. <br class="hidden md:block">Regístrate para recibir tu patrocinio profesional.
+            </p>
+
+            <!-- Country Selector Container -->
+            <div class="max-w-md mx-auto mb-6 w-full px-4">
+                <div class="relative">
+                    <select id="countrySelect" onchange="checkCountry()" class="w-full bg-card-bg border-2 border-steel text-white py-3 px-4 appearance-none font-display text-xl uppercase tracking-wider focus:border-neon-red focus:outline-none transition-colors cursor-pointer">
+                        <option value="">/// SELECCIONA TU PAÍS ///</option>
+                        <option value="MX">MÉXICO</option>
+                        <option value="AR">ARGENTINA</option>
+                        <option value="CL">CHILE</option>
+                        <option value="CO">COLOMBIA</option>
+                        <option value="ES">ESPAÑA</option>
+                        <option value="US">ESTADOS UNIDOS</option>
+                        <option value="PE">PERÚ</option>
+                        <option value="other">OTRO</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-neon-red">
+                        <i data-lucide="chevron-down" class="h-6 w-6"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <button id="registerBtn" onclick="registerRedirect()" disabled
+                   class="cyber-btn bg-neon-red text-black px-10 py-4 text-2xl font-display font-bold uppercase tracking-wider w-full md:w-auto min-w-[250px] shadow-[0_0_15px_rgba(255,31,31,0.4)] hover:shadow-[0_0_30px_rgba(255,31,31,0.6)]">
+                    Registrarme Ahora
+                </button>
+            </div>
+            <span class="block text-xs text-gray-600 uppercase tracking-widest mt-4">Selecciona tu país para desbloquear</span>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 animate-bounce text-gray-500">
+            <i data-lucide="chevron-down" class="w-8 h-8"></i>
         </div>
     </header>
-    
-    <section class="hero">
-        <div class="container">
-            <h1>¿Estas listo?</h1>
-            <p class="subtitle">Regístrate ahora y accede a productos de suplementación de alta calidad diseñados para maximizar tu rendimiento deportivo.</p>
-            
-            <div class="country-selector">
-                <select id="countrySelect" onchange="checkCountry()">
-                    <option value="">Selecciona tu país</option>
-                    <option value="MX">México</option>
-                    <option value="AR">Argentina</option>
-                    <option value="CL">Chile</option>
-                    <option value="CO">Colombia</option>
-                    <option value="ES">España</option>
-                    <option value="US">Estados Unidos</option>
-                    <option value="PE">Perú</option>
-                    <option value="other">Otro país</option>
-                </select>
-            </div>
-            
-            <button class="btn" id="registerBtn" onclick="registerRedirect()">Registrarme ahora</button>
-        </div>
-    </section>
-    
-    <section>
-        <div class="container">
-            <div class="section-title">
-                <h2>Nuestros productos destacados</h2>
-                <p class="subtitle">Suplementación de alta calidad para atletas de élite</p>
-            </div>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon">
-                        <i class="fas fa-weight"></i>
-                    </div>
-                    <h3 class="benefit-title">Whey Protein</h3>
-                    <p class="benefit-desc">Proteína de suero de leche de alta calidad para la recuperación y crecimiento muscular.</p>
-                </div>
-                
-                <div class="benefit-card fade-in delay-1">
-                    <div class="benefit-icon">
-                        <i class="fas fa-dumbbell"></i>
-                    </div>
-                    <h3 class="benefit-title">Creatina</h3>
-                    <p class="benefit-desc">Aumenta tu fuerza y potencia con nuestra creatina monohidratada de pureza superior.</p>
-                </div>
-                
-                <div class="benefit-card fade-in delay-2">
-                    <div class="benefit-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="benefit-title">Preworkout</h3>
-                    <p class="benefit-desc">Maximiza tu energía y enfoque durante los entrenamientos con nuestra fórmula avanzada.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section>
-        <div class="container">
-            <div class="section-title">
-                <h2>Beneficios exclusivos</h2>
-                <p class="subtitle">Ventajas de unirte a nuestro programa de patrocinio para atletas</p>
+    <!-- Stats Strip (Información añadida) -->
+    <div class="bg-neon-red text-black py-6 overflow-hidden border-y border-black">
+        <div class="flex flex-wrap gap-8 justify-center md:justify-around font-display text-3xl uppercase font-bold tracking-wider opacity-90 px-4 text-center">
+            <div class="flex flex-col md:flex-row items-center gap-2">
+                <span class="text-4xl">+500</span>
+                <span class="text-base md:text-xl bg-black text-neon-red px-2">ATLETAS</span>
             </div>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon">
-                        <i class="fas fa-percentage"></i>
-                    </div>
-                    <h3 class="benefit-title">Descuentos exclusivos</h3>
-                    <p class="benefit-desc">Accede a precios especiales en todos nuestros productos de suplementación deportiva.</p>
-                </div>
-                
-                <div class="benefit-card fade-in delay-1">
-                    <div class="benefit-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="benefit-title">Comunidad de atletas</h3>
-                    <p class="benefit-desc">Conecta con otros atletas patrocinados y comparte experiencias y estrategias.</p>
-                </div>
-                
-                <div class="benefit-card fade-in delay-2">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="benefit-title">Asesoramiento personalizado</h3>
-                    <p class="benefit-desc">Recibe recomendaciones específicas para tu disciplina deportiva y objetivos.</p>
-                </div>
+            <div class="hidden md:block w-px bg-black h-10 rotate-12"></div>
+            <div class="flex flex-col md:flex-row items-center gap-2">
+                <span class="text-4xl">+95%</span>
+                <span class="text-base md:text-xl bg-black text-neon-red px-2">RENDIMIENTO</span>
             </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <div class="stats-container">
-                <div class="stat-item fade-in">
-                    <div class="stat-number">+500</div>
-                    <div class="stat-label">atletas patrocinados</div>
-                </div>
-                <div class="stat-item fade-in">
-                    <div class="stat-number">+95%</div>
-                    <div class="stat-label">mejora en rendimiento</div>
-                </div>
-                <div class="stat-item fade-in">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">soporte nutricional</div>
-                </div>
+            <div class="hidden md:block w-px bg-black h-10 rotate-12"></div>
+            <div class="flex flex-col md:flex-row items-center gap-2">
+                <span class="text-4xl">24/7</span>
+                <span class="text-base md:text-xl bg-black text-neon-red px-2">SOPORTE</span>
             </div>
-        </div>
-    </section>
-    
-    <div class="modal" id="denialModal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeDenialModal()">&times;</button>
-            <h2>¡Atención!</h2>
-            <p>Lo sentimos, por ahora nuestro programa de patrocinio de élite solo está disponible para México.</p>
-            <button class="btn" onclick="closeDenialModal()" style="margin-top: 20px;">Entendido</button>
         </div>
     </div>
-    
-    <footer>
-        <div class="container">
-            <div class="logo">Power Labz</div>
-            <div class="footer-links">
-                <a href="#">Términos de servicio</a>
-                <a href="#">Política de privacidad</a>
-                <a href="#">FAQ</a>
-                <a href="#">Soporte</a>
+
+    <!-- Productos Section -->
+    <section id="productos" class="py-24 px-4 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-gray-800 pb-6">
+                <div>
+                    <h2 class="font-display text-5xl md:text-7xl uppercase text-white mb-2">Arsenal <span class="outline-text">Labz</span></h2>
+                    <p class="text-gray-400 font-mono text-sm">Suplementación de grado farmacéutico.</p>
+                </div>
+                <a href="#" class="hidden md:flex items-center gap-2 text-neon-red hover:text-white transition-colors uppercase font-bold text-sm tracking-widest">
+                    Ver Todo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
             </div>
-            <p class="copyright">© 2025 Power Labz. Suplementación deportiva de alta calidad. Consulte con un profesional de la salud antes de usar cualquier suplemento.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="cut-card bg-card-bg border border-steel hover:border-neon-red transition-all duration-300 group relative">
+                    <div class="h-64 bg-[#0f0f0f] flex items-center justify-center relative overflow-hidden">
+                         <!-- SVG Placeholder -->
+                         <svg class="w-40 h-40 drop-shadow-2xl group-hover:scale-110 transition-transform duration-500" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 30H85V130H15V30Z" fill="#111" stroke="#333" stroke-width="1"/>
+                            <!-- Label -->
+                            <rect x="15" y="45" width="70" height="70" fill="#000"/>
+                            <rect x="15" y="45" width="70" height="5" fill="#FF1F1F"/>
+                            <text x="50" y="85" font-family="Arial" font-weight="900" font-size="14" fill="white" text-anchor="middle">WHEY</text>
+                            <text x="50" y="100" font-family="Arial" font-weight="bold" font-size="8" fill="#888" text-anchor="middle">PROTEIN</text>
+                        </svg>
+                        <div class="absolute top-0 right-0 bg-neon-red text-black font-bold text-xs px-3 py-1 font-display">BEST SELLER</div>
+                    </div>
+                    <div class="p-6 pb-8">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-display text-3xl text-white uppercase">Whey Protein 4 Lbs</h3>
+                            <span class="text-neon-red font-bold font-mono">$1025</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">Proteína aislada de rápida absorción. Cero lactosa, cero excusas.</p>
+                        <button class="w-full border border-gray-600 text-white py-2 hover:bg-white hover:text-black hover:border-white transition-colors font-display uppercase tracking-wider text-lg">
+                            Añadir
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="cut-card bg-card-bg border border-steel hover:border-neon-red transition-all duration-300 group relative mt-0 md:-mt-8">
+                    <div class="h-64 bg-[#0f0f0f] flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-neon-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                         <!-- SVG Placeholder -->
+                         <svg class="w-40 h-40 drop-shadow-2xl group-hover:scale-110 transition-transform duration-500" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="80" r="35" fill="#111" stroke="#333" stroke-width="1"/>
+                            <rect x="35" y="30" width="30" height="15" fill="#000"/>
+                            <text x="50" y="85" font-family="Arial" font-weight="900" font-size="10" fill="white" text-anchor="middle">CREATINA</text>
+                            <text x="50" y="95" font-family="Arial" font-weight="bold" font-size="8" fill="#FF1F1F" text-anchor="middle">HCL</text>
+                        </svg>
+                    </div>
+                    <div class="p-6 pb-8">
+                         <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-display text-3xl text-white uppercase">Creatina</h3>
+                            <span class="text-neon-red font-bold font-mono">$550</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">Monohidrato micronizado puro. Potencia bruta para tus lifts.</p>
+                        <button class="w-full bg-neon-red text-black font-bold py-2 hover:bg-white hover:text-black transition-colors font-display uppercase tracking-wider text-lg glow-effect">
+                            Añadir
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="cut-card bg-card-bg border border-steel hover:border-neon-red transition-all duration-300 group relative">
+                    <div class="h-64 bg-[#0f0f0f] flex items-center justify-center relative overflow-hidden">
+                         <!-- SVG Placeholder -->
+                         <svg class="w-40 h-40 drop-shadow-2xl group-hover:scale-110 transition-transform duration-500" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 40L50 120L80 40H20Z" fill="#111" stroke="#333" stroke-width="1"/>
+                            <rect x="30" y="20" width="40" height="20" fill="#000"/>
+                            <text x="50" y="75" font-family="Arial" font-weight="900" font-size="14" fill="white" text-anchor="middle">BCAA</text>
+                            <path d="M20 40H80" stroke="#FF1F1F" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="p-6 pb-8">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-display text-3xl text-white uppercase">BCAA 1:1:1</h3>
+                            <span class="text-neon-red font-bold font-mono">$530</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">Ratio anabólico superior. Recuperación intra-entreno.</p>
+                        <button class="w-full border border-gray-600 text-white py-2 hover:bg-white hover:text-black hover:border-white transition-colors font-display uppercase tracking-wider text-lg">
+                            Añadir
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios Section (Grid Layout) -->
+    <section id="beneficios" class="py-24 bg-[#050505] border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Left Content -->
+                <div>
+                    <h2 class="font-display text-6xl md:text-8xl uppercase leading-none mb-8">
+                        Level <span class="text-neon-red">Up</span><br>
+                        Your Game
+                    </h2>
+                    <p class="text-gray-400 text-lg mb-8 max-w-md">
+                        Al registrarte no solo obtienes productos, entras a la élite. Accede a ventajas que separan a los amateurs de los pros.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <!-- Benefit Item -->
+                        <div class="flex items-start gap-4 group">
+                            <div class="bg-gray-900 p-3 text-neon-red group-hover:bg-neon-red group-hover:text-black transition-colors">
+                                <i data-lucide="percent" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-display text-2xl uppercase text-white">Descuentos Radicales</h4>
+                                <p class="text-sm text-gray-500">Precios directos de fábrica para miembros registrados.</p>
+                            </div>
+                        </div>
+
+                        <!-- Benefit Item -->
+                        <div class="flex items-start gap-4 group">
+                            <div class="bg-gray-900 p-3 text-neon-red group-hover:bg-neon-red group-hover:text-black transition-colors">
+                                <i data-lucide="users" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-display text-2xl uppercase text-white">Comunidad Elite</h4>
+                                <p class="text-sm text-gray-500">Acceso a grupos privados de entrenamiento y nutrición.</p>
+                            </div>
+                        </div>
+
+                         <!-- Benefit Item -->
+                         <div class="flex items-start gap-4 group">
+                            <div class="bg-gray-900 p-3 text-neon-red group-hover:bg-neon-red group-hover:text-black transition-colors">
+                                <i data-lucide="zap" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-display text-2xl uppercase text-white">Asesoría PRO</h4>
+                                <p class="text-sm text-gray-500">Planes personalizados por nuestros coaches certificados.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual -->
+                <div class="relative h-[500px] w-full bg-gray-900/30 border border-gray-800 flex items-center justify-center overflow-hidden cut-card">
+                     <!-- Abstract Tech Circle -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-[300px] h-[300px] border border-gray-700 rounded-full animate-[spin_10s_linear_infinite]"></div>
+                        <div class="w-[280px] h-[280px] border border-dashed border-gray-600 rounded-full absolute animate-[spin_15s_linear_infinite_reverse]"></div>
+                        <div class="w-[150px] h-[150px] bg-neon-red/10 rounded-full absolute blur-xl"></div>
+                    </div>
+                    <div class="relative z-10 text-center">
+                        <div class="font-display text-9xl text-white opacity-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">LABZ</div>
+                        <i data-lucide="trophy" class="w-24 h-24 text-white mx-auto mb-4"></i>
+                        <h3 class="font-display text-4xl uppercase">Join The Squad</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-32 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-neon-red mix-blend-multiply opacity-10"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4">
+            <h2 class="font-display text-5xl md:text-8xl uppercase mb-8 text-white leading-none">
+                No dejes pasar<br>tu momento
+            </h2>
+            <button onclick="document.getElementById('hero').scrollIntoView({behavior: 'smooth'})" 
+               class="inline-block border-2 border-neon-red text-neon-red px-12 py-5 text-2xl font-display uppercase hover:bg-neon-red hover:text-black transition-all duration-300 tracking-widest">
+                Reclamar Patrocinio
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-900 py-12 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-2xl font-display font-bold text-white tracking-wider">
+                POWER <span class="text-neon-red">LABZ</span>
+            </div>
+            <div class="flex gap-8 text-gray-500 font-display uppercase tracking-widest text-sm">
+                <a href="https://www.instagram.com/powerlabz_originals/" target="_blank" class="flex items-center gap-2 hover:text-neon-red transition-colors">
+                    <i data-lucide="instagram" class="w-5 h-5"></i> Instagram
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61556937702094" target="_blank" class="flex items-center gap-2 hover:text-neon-red transition-colors">
+                    <i data-lucide="facebook" class="w-5 h-5"></i> Facebook
+                </a>
+            </div>
+            <p class="text-gray-700 text-xs font-mono">© 2025 Power Labz Inc.</p>
         </div>
     </footer>
-    
-    <script>
-        // Funcionalidad del modal
-        function openDenialModal() {
-            document.getElementById('denialModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeDenialModal() {
-            document.getElementById('denialModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        
-        // Cerrar modal al hacer clic fuera del contenido
-        window.onclick = function(event) {
-            const denialModal = document.getElementById('denialModal');
+
+    <!-- Modal de denegación (Oculto por defecto) -->
+    <div id="denialModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm px-4">
+        <div class="bg-card-bg border-2 border-neon-red max-w-lg w-full p-8 text-center relative cut-card shadow-[0_0_50px_rgba(255,31,31,0.2)]">
+            <button onclick="closeDenialModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
             
-            if (event.target == denialModal) {
-                closeDenialModal();
-            }
-        }
-        
-        // Función para verificar el país seleccionado
+            <div class="mb-6 flex justify-center">
+                <div class="bg-neon-red/10 p-4 rounded-full">
+                    <i data-lucide="alert-triangle" class="w-16 h-16 text-neon-red"></i>
+                </div>
+            </div>
+            
+            <h3 class="font-display text-4xl uppercase text-white mb-4">Acceso Restringido</h3>
+            <p class="text-gray-400 mb-8 font-mono text-sm leading-relaxed">
+                Lo sentimos, soldado. Por ahora nuestro programa de patrocinio de élite solo está disponible para operaciones en <span class="text-neon-red font-bold">MÉXICO</span>.
+            </p>
+            
+            <button onclick="closeDenialModal()" class="w-full border border-neon-red text-neon-red hover:bg-neon-red hover:text-black py-3 font-display text-xl uppercase transition-all">
+                Entendido
+            </button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Lógica del selector de país
         function checkCountry() {
             const countrySelect = document.getElementById('countrySelect');
             const selectedCountry = countrySelect.value;
             const registerBtn = document.getElementById('registerBtn');
             
+            // Solo habilitar si se selecciona México
             if (selectedCountry === 'MX') {
-                registerBtn.textContent = 'Registrarme ahora';
                 registerBtn.disabled = false;
                 registerBtn.style.opacity = '1';
                 registerBtn.style.cursor = 'pointer';
-            } else {
-                registerBtn.textContent = 'Registrarme ahora';
+                registerBtn.innerHTML = 'REGISTRARME AHORA <i data-lucide="arrow-right" class="inline w-6 h-6 ml-2"></i>';
+                lucide.createIcons(); // Reiniciar iconos para el nuevo contenido
+            } else if (selectedCountry === '') {
                 registerBtn.disabled = true;
-                registerBtn.style.opacity = '0.5';
-                registerBtn.style.cursor = 'not-allowed';
+                registerBtn.innerHTML = 'SELECCIONA TU PAÍS';
+            } else {
+                // Habilitar botón pero con propósito de mostrar modal
+                registerBtn.disabled = false;
+                registerBtn.style.opacity = '1';
+                registerBtn.style.cursor = 'pointer';
+                registerBtn.innerHTML = 'VERIFICAR DISPONIBILIDAD';
             }
         }
-        
-        // Función para redirigir según el país
+
         function registerRedirect() {
             const countrySelect = document.getElementById('countrySelect');
             const selectedCountry = countrySelect.value;
             
             if (selectedCountry === 'MX') {
-                window.open('https://comandante57.github.io/formreclutamientopowerlabz/', '_blank');
-            } else if (selectedCountry) {
+                window.location.href = 'https://comandante57.github.io/formreclutamientopowerlabz/';
+            } else {
                 openDenialModal();
             }
         }
+
+        function openDenialModal() {
+            document.getElementById('denialModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevenir scroll
+        }
         
-        // Efecto de aparición al hacer scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animationPlayState = 'running';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            });
-            
-            fadeElements.forEach(element => {
-                observer.observe(element);
-            });
-            
-            // Deshabilitar el botón al cargar la página si no hay país seleccionado
-            checkCountry();
-        });
+        function closeDenialModal() {
+            document.getElementById('denialModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaurar scroll
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('denialModal');
+            if (event.target == modal) {
+                closeDenialModal();
+            }
+        }
+
+        // Inicializar estado del botón
+        checkCountry();
     </script>
 </body>
 </html>
